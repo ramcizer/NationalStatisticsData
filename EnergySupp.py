@@ -110,20 +110,6 @@ def answer_nine():
     new_pd['Citable docs per capita'] = new_pd['Citable documents'] / new_pd['Pop Estimate']
     return new_pd[['Citable docs per capita', 'Energy Supply per Capita']].corr(method='pearson').iloc[0,1]
 
-# What I wrote before Chat GPT solved
-# Error was: "TypeError: 'numpy.float64' object does not support item assignment"
-# def answer_ten():
-#     renew_median = new_pd['% Renewable'].median()
-#     new_pd['High Renew'] = None
-#     for i in new_pd['% Renewable'].values:
-#         if i > renew_median:
-#             new_pd['High Renew'] = 1
-#         else:
-#             i['High Renew'] = 0
-
-#     return pd.Series(new_pd['High Renew'])
-
-
 def answer_ten():
     new_pd = answer_one()
     renew_median = new_pd['% Renewable'].median()
