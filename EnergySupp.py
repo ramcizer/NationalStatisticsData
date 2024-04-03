@@ -22,7 +22,6 @@ def answer_one():
 
     # Energy.rename(columns={1: 'Country', 2: 'Energy Supply'}, inplace=True)
     Energy["Energy Supply"] = Energy["Energy Supply"].replace({"...": np.nan}).apply(lambda x: x*1000000)
-    # Energy['Energy Supply'] = 1000000 * Energy['Energy Supply']
     Energy['Country'] = Energy['Country'].replace({"Republic of Korea": "South Korea", "United States of America20": "United States", "United Kingdom of Great Britain and Northern Ireland19": "United Kingdom", "China, Hong Kong Special Administrative Region": "Hong Kong", "Japan10": "Japan", "France6": "France", "China2": "China", "Italy9": "Italy", "Spain16": "Spain", "Iran (Islamic Republic of)": "Iran", "Australia1": "Australia"})
 
     # A Regex for anything within a bracket. 
@@ -40,9 +39,9 @@ def answer_one():
     ScimEn = pd.read_excel('assets/scimagojr-3.xlsx')
     ScimEn = ScimEn.set_index('Country')
 
-    # new_pd = Energy.merge(GDP, on='Country').merge(ScimEn, on='Country')
 
-    # The following worked but created a problem of it not being a dataframe. 
+
+    # Merging
     new_pd = ScimEn.merge(Energy, on='Country').merge(GDP, on='Country')
     # new_pd = pd.DataFrame.merge(ScimEn, Energy, on='Country').merge(GDP, on='Country')
     new_pd = new_pd[0:15]
